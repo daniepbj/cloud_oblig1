@@ -111,7 +111,7 @@ MongoClient.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.ne
           }
         },
       ).then((result) => {
-        res.redirect('/time')
+        res.redirect('/')
       })
         .catch((error) => console.error(error));
     })
