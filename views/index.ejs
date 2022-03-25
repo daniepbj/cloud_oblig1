@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Student Form</title>
+  <title>Add and update forms</title>
 </head>
-<body>
-  <a href="/data">Data Portal</a>
-  <h1>Student Form</h1>
 
+<body>
+  <!--Link to the data portal-->
+  <a href="/data">Data Portal</a>
+  <h1>Add and update forms</h1><br>
+
+  <!--Form for adding students to the database-->
+  <h2>Add student</h2>
   <form action="/" method="POST">
     <label for="name">First name:</label><br>
     <input type="text" placeholder="Firstname" name="name" id="name" required><br>
@@ -21,7 +26,49 @@
     <input type="text" placeholder="Nationality" name="nationality" id="nationality" required><br>
     <label for="degree">Degree:</label><br>
     <input type="text" placeholder="Degree" name="degree" id="degree" required><br>
-    <button type="submit">Submit</button>
+    <button type="submit">Add User</button>
   </form><br>
+
+  <!--Form for updating students in the database. Student_id is the identifier-->
+  <h2>Update student</h2>
+  <form action="/updatestudent" method="POST">
+    <label for="name">First name:</label><br>
+    <input type="text" placeholder="Firstname" name="name" id="name" required><br>
+    <label for="surname">Surname:</label><br>
+    <input type="text" placeholder="Surname" name="surname" id="surname" required><br>
+    <label for="student_id">Student Id:</label><br>
+    <input type="number" placeholder="Student Id" name="student_id" id="student_id" required><br>
+    <label for="age">Age:</label><br>
+    <input type="number" placeholder="Age" name="age" id="age" required><br>
+    <label for="nationality">Nationality:</label><br>
+    <input type="text" placeholder="Nationality" name="nationality" id="nationality" required><br>
+    <label for="degree">Degree:</label><br>
+    <input type="text" placeholder="Degree" name="degree" id="degree" required><br>
+    <button type="submit">Update User</button>
+  </form><br>
+
+  <h2>Measure the data transmission latency</h2>
+  <button onclick="getTime()">Measure Time</button>
+  <script>
+    //function to measure the time it takes for the request to the database to come back to the client
+    //results are logged in the client console
+    async function getTime() {
+      let t0 = Date.now()
+      let t1 = 0
+      let t2 = 0
+      let t3 = 0
+      fetch('/time')
+        .then(response => response.json())
+        .then(data => {
+          t1 = data.time[0]
+          t2 = data.time[1]
+          t3 = Date.now()
+          console.log(t0, t1, t2, t3)
+          console.log((t3-t0)-(t2-t1))
+        })
+    };
+  </script>
+
 </body>
+
 </html>
