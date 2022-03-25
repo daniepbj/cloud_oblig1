@@ -106,8 +106,8 @@ MongoClient.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.ne
             surname: req.body.surname,
             age: req.body.age,
             nationality: req.body.nationality,
-            degree: req.body.degree,
-            dateAdded: req.body.dateAdded
+            degree: req.body.degree
+            
           }
         },
       ).then((result) => {
